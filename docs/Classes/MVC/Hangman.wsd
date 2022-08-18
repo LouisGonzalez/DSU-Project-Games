@@ -66,6 +66,8 @@ package controller {
 
     package hangman{
 
+        class HangmanController{}
+
         interface IHangmanPlayer{}
 
         interface IGiverable{
@@ -132,14 +134,16 @@ IHangmanPlayer ..|> IGuesserable
 GameController ..> GamePlayersProvider
 Game *-- IPlayerGeneral
 
-GameController ..> BoardController
-GameController ..> WordController
+HangmanController ..> BoardController
+HangmanController ..> WordController
 
 HangmanView ..> WordView
 HangmanView ..> BoardView
-HangmanView ..> GameController
+HangmanView ..> HangmanController
 WordView ..> WordController
 BoardView ..> BoardController
+
+HangmanController --|> GameController
 
 
 
