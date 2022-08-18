@@ -1,0 +1,64 @@
+@startuml VocabularyHangMan
+
+object HangMan
+object SelectPlayers
+object Game
+object Turn 
+object HangedMan
+object Word
+object OriginalWord
+object SecretWord
+object Player
+object WordGuesserable
+object WordGiverable
+object GiveWord
+object GuessWord
+object TryLetter
+object AssignRoles
+object StatisticsTempo
+object GuessingAttempts
+object AskForAHint
+object RemainingAttempts
+object GuiveAHint
+object HangManPlayer
+object GuessedLetters
+
+HangMan *--"2" Game
+HangMan ..>"2" SelectPlayers
+HangMan *-->"2" Player
+HangMan *-- StatisticsTempo
+HangMan *-- GuessingAttempts
+
+Game --> GuessingAttempts
+Game *--"*" Turn
+Game *-- AssignRoles
+AssignRoles ..> Player
+AssignRoles ..> WordGiverable
+AssignRoles ..> WordGuesserable
+Game ..> StatisticsTempo
+
+Turn ..> GuessingAttempts
+Turn *-- HangedMan
+Turn *-- WordGiverable
+Turn *-- WordGuesserable
+Turn --> StatisticsTempo
+
+SelectPlayers ..> Player
+WordGiverable --|> HangManPlayer
+WordGuesserable --|> HangManPlayer
+Player ..|> HangManPlayer
+WordGiverable *-- GiveWord
+WordGuesserable *-- GuessWord
+WordGuesserable *-- TryLetter
+WordGuesserable *-- AskForAHint
+
+HangedMan *-- Word
+HangedMan *-- GuessingAttempts
+HangedMan *-- RemainingAttempts
+HangedMan *-- GuiveAHint
+
+Word *-- OriginalWord
+Word *-- SecretWord
+Word *-- GuessedLetters
+
+@enduml

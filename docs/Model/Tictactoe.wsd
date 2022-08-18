@@ -1,0 +1,47 @@
+@startuml ModelTictactoe
+
+
+
+class Board{
+    -idGame int
+    -column int
+    -row int
+    -idPiece Piece
+}
+
+class Player{
+    -idPlayer int
+    -name String
+    -idTypePlayer int
+}
+
+
+class Game{
+    -idGame int
+    -finished boolean
+    -gameResult String
+    -idPlayerX Player
+    -idPlayerO Player
+    -idWinner Player
+    -draw Boolean
+    -totalAttemps int
+}
+
+class TypePlayer{
+    -idTypePlayer int
+    -name String
+}
+
+
+Class Piece  {
+    -idPiece int
+    -name String
+}
+
+Board *-- Game
+Board o--Piece
+Game*--Player
+Player*--TypePlayer
+
+
+@enduml

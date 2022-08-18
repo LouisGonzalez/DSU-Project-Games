@@ -1,0 +1,29 @@
+@startuml ModelPlayer
+
+class Player{
+    -idPlayer:int
+    -name:String
+    -idTypePlayer:int
+}
+
+class Statistic{
+    -idStatistic:int
+    -idTypeStatistic:int
+    -idPlayer:int
+}
+
+class TypeStatistic{
+    -idType:int
+    -name:String
+}
+
+class TypePlayer{
+    -idTypePlayer:int
+    -name:String
+}
+
+Player *-- "*" Statistic
+Statistic *-- TypeStatistic
+Player *-- TypePlayer
+
+@enduml

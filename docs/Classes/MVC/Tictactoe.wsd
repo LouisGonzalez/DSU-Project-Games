@@ -1,0 +1,112 @@
+@startuml MVCTictactoe
+
+package model {
+
+    class Player {
+        -name:String
+        -idPlayer:int
+        }
+        
+    class ListPlayers{
+        -getPlayers():Player[]
+    }
+        
+    class Game {
+        -players:ArrayList<IPlayerGeneral> 
+    }
+
+    class TicTacToe{
+        -board:Board
+        -finished:boolean
+        -guessingAttemps:int
+    }
+
+    class Board{
+        -board:Square[][] 
+    }
+
+    class Square{}
+
+    object X
+    object O
+    object EMPTY
+
+}
+
+package view {
+
+    class TicTacToeView{
+        +{abstract}selectPlayer(GamePlayersProvider listProviders):void
+        +{abstract}go():void
+        +{abstract}turn(IPlayerGeneral player):void
+    }
+
+    class BoardView{
+        +printBoard():void
+    }
+
+}
+
+package controller {
+
+    interface GamePlayersProvider {
+        +getIPlayersGeneralList(int amountPlayers):ArrayList<IPlayerGeneral>
+    }
+
+    interface IPlayerGeneral{
+        +saveGameResults(Statistic result):void
+    }
+
+    abstract GameController{
+        +{abstract}selectPlayer(GamePlayersProvider listProviders):void
+        +{abstract}go():void
+        +{abstract}turn(IPlayerGeneral player):void
+    }
+
+    package tictactoe{
+
+        interface TictactoePlayer{
+            +returnPosition():void()
+        }
+
+
+        class BoardController{
+            +printBoard():void
+            +isTicTacToe():void
+            +isEmptySpaces():void
+        }
+
+        class TicTacToeController{
+
+        }
+
+
+    }
+
+}
+
+
+
+TicTacToeView ..> BoardView
+TicTacToeView ..> TicTacToeController
+BoardView ..> BoardController
+
+Game --> IPlayerGeneral
+GameController ..> GamePlayersProvider
+GameController ..> IPlayerGeneral
+ListPlayers ..|> GamePlayersProvider
+Player ..|> IPlayerGeneral
+IPlayerGeneral ..|> TictactoePlayer
+
+
+TicTacToeController --|> GameController
+TicTacToeController ..> BoardController
+
+ListPlayers *-- Player
+TicTacToe *-right- Board
+Board *-- "*" Square
+Square *-- X
+Square *-- O
+Square *-- EMPTY
+
+@enduml

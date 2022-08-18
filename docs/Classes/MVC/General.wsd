@@ -1,0 +1,135 @@
+@startuml MvcGeneral
+
+
+package model{
+
+    class Player{
+        -String name
+        -StatisticsPlayer statistics
+    } 
+
+
+
+    class StatisticsPlayer {
+        -ArrayList<Statistic> listStatistics
+    }
+
+    class Statistic {
+        -TypeGame type
+        -StatisticValue value
+    }
+
+    class Menu{
+        -ArrayList<IPlayerGeneral> listPlayers
+    }
+
+    enum TypeGame {}
+    object HANGMAN
+    object TICTACTOE
+
+    enum TypePlayer {}
+    object Bot
+    object Human
+
+    enum StatisticValue {}
+    object DRAW
+    object LOSE
+    object WIN
+
+}
+
+package view{
+
+    class ProgramView{
+        -showWelcome():void
+    }
+
+    class MenuView{
+        -showPrincipalMenu():void
+    }
+
+    class TerminalView{
+        -askNumber():void
+        -askString():void
+        -showMessage():void
+    }
+
+}
+
+package controller {
+
+    class ProgramController{
+        +start():void
+    }
+
+    class MenuController {
+        +showMenuPrincipal():void
+
+    }
+
+    class GameController{
+        +selectPlayers(ArrayList<IPlayerGeneral> list):void
+        +{abstract}go():void
+        +{abstract}turn():void
+    }
+
+    class TerminalController{
+        +askNumber():int
+        +askString():String
+
+    }
+
+    class PlayerController{
+        +create():void
+        +read():void
+        +update():void
+        +delete():void
+        +getOne():void
+        +showPlayers():void
+    }
+
+    interface IPlayerGeneral{
+        +saveGameResult():void
+    }
+
+
+}
+
+
+
+
+Menu *-- IPlayerGeneral
+Player *-- StatisticsPlayer
+StatisticsPlayer *-- Statistic
+Player --|> IPlayerGeneral
+Statistic *-- TypeGame
+TypeGame *-- HANGMAN 
+TypeGame *-- TICTACTOE
+
+ProgramController ..> TerminalController
+ProgramController ..> MenuController
+MenuController ..> GameController
+MenuController ..> PlayerController
+GameController ..> PlayerController
+GameController ..> IPlayerGeneral
+
+Statistic *-- StatisticValue
+StatisticValue *-- DRAW
+StatisticValue *-- LOSE 
+StatisticValue *-- WIN
+
+Player *-- TypePlayer
+TypePlayer *-- Bot
+TypePlayer *-- Human
+
+ProgramView ..> MenuView
+ProgramView ..> TerminalView
+ProgramView ..> ProgramController
+MenuView ..> MenuController
+TerminalView ..> TerminalController
+
+PlayerController ..> Player
+GameController ..> Menu
+
+
+@enduml

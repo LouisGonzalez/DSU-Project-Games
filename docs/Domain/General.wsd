@@ -1,0 +1,32 @@
+@startuml DomainDiagram
+
+object Project
+object Hangman
+object TicTacToe
+object Player
+object CreatePlayer
+
+object Human
+object Bot
+object Statistic
+
+object WIN
+object LOSE
+object DRAW
+
+Project *-- Hangman
+Project *-- TicTacToe
+Project *-- "*" Player
+Project ..> CreatePlayer
+CreatePlayer ..> Player
+
+Human -up-|> Player
+Bot -up-|> Player
+Player *-down- "*" Statistic
+
+Statistic *-- WIN
+Statistic *-- LOSE
+Statistic *-- DRAW
+
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml ModelHangman
+
+class Game{
+    -idGame int
+    -finished boolean
+    -gameResult String
+    -idGiver Player
+    -idGuesser Player
+    -idWinner Player
+    -totalAttemps int
+}
+
+class Player{
+    -idPlayer int
+    -name String
+    -idTypePlayer int
+}
+
+
+class TypePlayer{
+    -idTypePlayer int
+    -name String
+}
+
+class Word{
+    -idWord int
+    -idGame int
+    -originalWord String
+    -secretWord String
+    -guessedLetters String
+}
+
+Game *-- Word
+Game*-- "2" Player
+Player*--TypePlayer
+
+
+@enduml

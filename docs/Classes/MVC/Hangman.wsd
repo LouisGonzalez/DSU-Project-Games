@@ -1,0 +1,146 @@
+@startuml MVCHangman
+
+package model {
+
+    class Player{
+        -name:String
+        -id:int
+    }
+
+    class ListPlayers{
+        -listPlayers:Player[]
+        -getPlayers():Player[]
+    }
+
+    class Word{
+        -originalWord:String
+        -secretWord:String
+        -guessedLetters:String
+    }
+
+    class Board{
+        -guessingAttemps:int
+        -hangedMan:String[6]
+    }
+
+    class Hangman{
+        -remainingAttempts:int
+        -guessingAttempts:int
+        -board:Board
+        -word:Word
+        -wordGiver:IGiverable
+        -wordGuesser:IGuesserable
+
+    }
+
+    class Game {
+        -players:ArrayList<IPlayerGeneral>
+    }
+
+}
+
+package view {
+
+    class BoardView{
+        +cleanBoard():void
+        +printHangman():void
+        +editHangman():void
+
+    }
+
+    class HangmanView{
+        + selectPlayer(GamePlayersProvider listProviders):void
+        + go():void
+        + turn():void   
+
+    }
+
+    class WordView{
+        +createGuessWord():void
+        +printMissingLetters():void
+    }
+
+}
+
+package controller {
+
+    package hangman{
+
+        interface IHangmanPlayer{}
+
+        interface IGiverable{
+            + selectWord()
+        }
+
+        interface IGuesserable{
+            + guessWord()
+            + tryLetter()
+            + askForAHint()
+        }
+
+        class WordController{
+            +createGuessWord():void
+            +checkWin():boolean
+            +printMissingLetters():void
+            +checkLetter():boolean
+            -placeLetters():void
+            -getExistingPosition():int
+
+        }
+
+        class BoardController{
+            +cleanBoard():void
+            +printHangman():void
+            +editHangman():void
+
+        }
+
+
+    }
+
+
+    class GameController{
+        + {abstract}selectPlayer(GamePlayersProvider listProviders):void
+        + {abstract}go():void
+        + {abstract}turn():void   
+    }
+
+    interface GamePlayersProvider {
+        + getIPlayersGeneralList(int amountPlayers):ArrayList<IPlayerGeneral>
+    }
+
+    interface IPlayerGeneral{
+    + saveGameResults(TypeGame type, StatisticValue value):void
+}
+
+
+
+
+
+}
+Player ..|> IPlayerGeneral
+ListPlayers ..|> GamePlayersProvider
+
+Hangman *-- Board
+Hangman *-- Word
+ListPlayers *-- Player
+
+IPlayerGeneral ..|> IHangmanPlayer
+IHangmanPlayer ..|> IGiverable
+IHangmanPlayer ..|> IGuesserable
+
+GameController ..> GamePlayersProvider
+Game *-- IPlayerGeneral
+
+GameController ..> BoardController
+GameController ..> WordController
+
+HangmanView ..> WordView
+HangmanView ..> BoardView
+HangmanView ..> GameController
+WordView ..> WordController
+BoardView ..> BoardController
+
+
+
+@enduml 
