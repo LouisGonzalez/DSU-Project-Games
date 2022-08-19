@@ -3,6 +3,7 @@ package com.ProjectGames.model;
 public class Player {
 
     private String name;
+    private int Pid;
     private StatisticsPlayer myStatistics = new StatisticsPlayer();
 
     public Player(String name){
