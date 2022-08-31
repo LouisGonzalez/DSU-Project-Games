@@ -2,7 +2,11 @@ package com.ProjectGames.model.tictactoe;
 
 public class Square {
 
-    ValueSquare myValue = ValueSquare.EMPTY;
+    ValueSquare myValue;
+
+    public Square(){
+        this.myValue = ValueSquare.EMPTY;
+    }
 
     public void setMyValue(ValueSquare myValue){
         this.myValue = myValue;

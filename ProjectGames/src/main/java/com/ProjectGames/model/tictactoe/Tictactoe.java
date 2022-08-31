@@ -3,20 +3,32 @@ package com.ProjectGames.model.tictactoe;
 import com.ProjectGames.controller.IPlayerGeneral;
 import com.ProjectGames.model.Game;
 import com.ProjectGames.model.Player;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.ArrayList;
 
+@JsonIgnoreProperties (value={"hibernateLazyInitializer","handler","fieldHandler"})
 public class Tictactoe extends Game {
+
+    private int idGame;
     private Board myBoard;
     private Player playerX;
     private Player playerO;
 
-    public Tictactoe(ArrayList<IPlayerGeneral> generalList, int totalPlayers, Player playerX, Player playerO){
-        super(generalList, totalPlayers);
-        myBoard = new Board();
-        this.playerO = playerO;
-        this.playerX = playerX;
+
+    public Tictactoe(ArrayList<Integer> idPlayers, int idGame){
+        super(idPlayers);
+        this.myBoard = new Board();
+        this.idGame = idGame;
+        this.initPlayers();
     }
+
+    public void initPlayers(){
+        this.selectPlayers(this.listProviders);
+        playerX = this.players.get(0);
+        playerO = this.players.get(1);
+    }
+
 
     public void setMyBoard(Board myBoard){
         this.myBoard = myBoard;
@@ -40,5 +52,13 @@ public class Tictactoe extends Game {
 
     public void setPlayerO(Player playerO) {
         this.playerO = playerO;
+    }
+
+    public int getIdGame() {
+        return idGame;
+    }
+
+    public void setIdGame(int idGame) {
+        this.idGame = idGame;
     }
 }
