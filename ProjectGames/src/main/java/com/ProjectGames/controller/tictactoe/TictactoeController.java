@@ -1,9 +1,11 @@
 package com.ProjectGames.controller.tictactoe;
 
 import com.ProjectGames.DTO.GameDataDTO;
+import com.ProjectGames.DTO.IdGameDTO;
 import com.ProjectGames.model.Game;
 import com.ProjectGames.model.Principal;
 import com.ProjectGames.model.StatisticValue;
+import com.ProjectGames.model.TypeGame;
 import com.ProjectGames.model.tictactoe.MovementGame;
 import com.ProjectGames.model.tictactoe.Tictactoe;
 import com.ProjectGames.service.tictactoe.StatisticsService;
@@ -39,7 +41,8 @@ public class TictactoeController {
             ArrayList<Integer> idPlayers = new ArrayList<>();
             idPlayers.add(game.get("playerX").asInt());
             idPlayers.add(game.get("playerO").asInt());
-            Tictactoe ttt = new Tictactoe(idPlayers, game.get("idGame").asInt());
+            int idGame = Principal.games.size();
+            Tictactoe ttt = new Tictactoe(idPlayers, idGame, TypeGame.TICTACTOE);
             Principal.games.add(ttt);
             System.out.println("Game created");
             return new ResponseEntity("Game created", HttpStatus.OK);
@@ -74,6 +77,18 @@ public class TictactoeController {
     @GetMapping(value="/data/{idGame}")
     public ResponseEntity<GameDataDTO> getDataGame(@PathVariable Long idGame){
         return ResponseEntity.ok(tttService.findDataGame(idGame));
+    }
+
+    @GetMapping(value="/id")
+    public ResponseEntity<IdGameDTO> getIdGame(){
+        Tictactoe game= (Tictactoe) Principal.games.get(Principal.games.size()-1);
+        IdGameDTO gameInfo = new IdGameDTO(game.getIdGame());
+        return ResponseEntity.ok(gameInfo);
+    }
+
+    @GetMapping(value="/all")
+    public ResponseEntity<List<GameDataDTO>> getAllGames(){
+        return ResponseEntity.ok(tttService.findAllGames());
     }
 
 

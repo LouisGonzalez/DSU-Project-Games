@@ -19,13 +19,16 @@ public abstract class Game {
     private int totalPlayers;
     public GamePlayersProvider listProviders;
 
+    private TypeGame typeGame;
 
-    public Game(ArrayList<Integer> idPlayers){
+
+    public Game(ArrayList<Integer> idPlayers, TypeGame typeGame){
         this.listProviders = new ListPlayersController();
         this.finished = false;
         this.guessingAttemps = 0;
         this.countMoves = 0;
         this.idPlayers = idPlayers;
+        this.typeGame = typeGame;
     }
 
     public void selectPlayers(GamePlayersProvider listProviders){
@@ -90,5 +93,13 @@ public abstract class Game {
 
     public void setCountMoves(int countMoves) {
         this.countMoves = countMoves;
+    }
+
+    public TypeGame getTypeGame() {
+        return typeGame;
+    }
+
+    public void setTypeGame(TypeGame typeGame) {
+        this.typeGame = typeGame;
     }
 }

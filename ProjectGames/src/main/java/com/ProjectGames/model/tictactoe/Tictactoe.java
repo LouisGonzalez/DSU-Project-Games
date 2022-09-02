@@ -3,6 +3,7 @@ package com.ProjectGames.model.tictactoe;
 import com.ProjectGames.controller.IPlayerGeneral;
 import com.ProjectGames.model.Game;
 import com.ProjectGames.model.Player;
+import com.ProjectGames.model.TypeGame;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class Tictactoe extends Game {
     private Player playerO;
 
 
-    public Tictactoe(ArrayList<Integer> idPlayers, int idGame){
-        super(idPlayers);
+    public Tictactoe(ArrayList<Integer> idPlayers, int idGame, TypeGame typeGame){
+        super(idPlayers, typeGame);
         this.myBoard = new Board();
         this.idGame = idGame;
         this.initPlayers();

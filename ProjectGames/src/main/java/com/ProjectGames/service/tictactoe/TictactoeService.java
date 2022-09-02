@@ -4,6 +4,7 @@ import com.ProjectGames.DTO.GameDataDTO;
 import com.ProjectGames.DTO.PlayerDTO;
 import com.ProjectGames.model.Player;
 import com.ProjectGames.model.Principal;
+import com.ProjectGames.model.TypeGame;
 import com.ProjectGames.model.tictactoe.*;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,22 @@ import java.util.List;
 
 @Service
 public class TictactoeService {
+
+    public List<GameDataDTO> findAllGames(){
+        List<GameDataDTO> listGames = new ArrayList<>();
+        for (int i = 0; i < Principal.games.size(); i++) {
+            if(Principal.games.get(i).getTypeGame() == TypeGame.TICTACTOE) {
+                Tictactoe game = (Tictactoe) Principal.games.get(i);
+                Player playerX = game.getPlayerX();
+                Player playerO = game.getPlayerO();
+                PlayerDTO playerXsend = new PlayerDTO(game.getIdPlayers().get(0), playerX.getName(), playerX.getTypePlayer(), playerX.getAge());
+                PlayerDTO playerOsend = new PlayerDTO(game.getIdPlayers().get(1), playerO.getName(), playerO.getTypePlayer(), playerX.getAge());
+                GameDataDTO gameDTO = new GameDataDTO(i, game.getCountMoves(), playerXsend, playerOsend);
+                listGames.add(gameDTO);
+            }
+        }
+        return listGames;
+    }
 
     public GameDataDTO findDataGame(Long idGame){
         Tictactoe game = (Tictactoe) Principal.games.get(idGame.intValue());

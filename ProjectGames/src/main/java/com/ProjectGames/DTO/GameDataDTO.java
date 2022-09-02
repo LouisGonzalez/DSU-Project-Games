@@ -3,6 +3,8 @@ package com.ProjectGames.DTO;
 import com.ProjectGames.model.Player;
 
 public class GameDataDTO {
+
+    private int idGame;
     private int countMoves;
     private PlayerDTO playerX;
     private PlayerDTO playerO;
@@ -11,6 +13,21 @@ public class GameDataDTO {
         this.countMoves = countMoves;
         this.playerX = playerX;
         this.playerO = playerO;
+    }
+
+    public GameDataDTO(int idGame, int countMoves, PlayerDTO playerX, PlayerDTO playerO){
+        this.countMoves = countMoves;
+        this.playerX = playerX;
+        this.playerO = playerO;
+        this.idGame = idGame;
+    }
+
+    public int getIdGame() {
+        return idGame;
+    }
+
+    public void setIdGame(int idGame) {
+        this.idGame = idGame;
     }
 
     public int getCountMoves() {

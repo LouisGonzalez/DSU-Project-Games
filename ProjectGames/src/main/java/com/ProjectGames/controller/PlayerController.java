@@ -1,5 +1,6 @@
 package com.ProjectGames.controller;
 
+import com.ProjectGames.DTO.PlayerDTO;
 import com.ProjectGames.model.Player;
 import com.ProjectGames.model.Principal;
 import com.ProjectGames.service.PlayerService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin (origins = Constants.URL_FRONT_END, allowCredentials = "true")
 @RestController
@@ -31,4 +34,10 @@ public class PlayerController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @GetMapping("/all/")
+    public ResponseEntity<List<PlayerDTO>> getAllPlayers(){
+        return ResponseEntity.ok(playerService.findPlayersInfo());
+    }
+
 }
