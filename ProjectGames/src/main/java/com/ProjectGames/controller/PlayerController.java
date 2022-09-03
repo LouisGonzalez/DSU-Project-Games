@@ -1,6 +1,7 @@
 package com.ProjectGames.controller;
 
 import com.ProjectGames.model.Player;
+import com.ProjectGames.model.TypePlayer;
 import com.ProjectGames.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,9 +28,10 @@ public class PlayerController {
     @PostMapping("/addPlayer")
     public ResponseEntity<Player> createPlayer(@RequestBody Player p){
         String name = p.getName();
+        String type = String.valueOf(p.getTypePlayer());
         int id = p.getid();
-        int age =p.getAge();
-        playerService.createPlayer(name,age,id);
+        int age = p.getAge();
+        playerService.createPlayer(name, type, age, id);
         return new ResponseEntity<>(p, HttpStatus.OK);
     }
     @CrossOrigin(origins = "*")

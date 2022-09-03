@@ -1,6 +1,7 @@
 package com.ProjectGames.service;
 
 import com.ProjectGames.model.Player;
+import com.ProjectGames.model.TypePlayer;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,19 +9,22 @@ import java.util.ArrayList;
 @Service
 public class PlayerService {
     public static ArrayList<Player> playerList = new ArrayList<>();
+    TypePlayer typePlayer;
 
     public PlayerService() {
-        playerList.add(new Player("Boot1", 0, 0));
-        playerList.add(new Player("Boot2", 5, 1));
+        playerList.add(new Player("Boot1", "Bot", 0, 0));
+        playerList.add(new Player("Boot2", "Bot", 1,15));
     }
 
     public ArrayList<Player> ShowPlayers() {
         return playerList;
     }
 
-    public void createPlayer(String name, int age, int id) {
-        Player player = new Player(name, age, id);
+    public void createPlayer(String name, String type, int age, int id) {
+
+        Player player = new Player(name,type, age, id);
         player.setid(id);
+        player.setTypePlayer(TypePlayer.valueOf(type));
         player.setName(name);
         player.setAge(age);
         playerList.add(player);
@@ -58,22 +62,4 @@ public class PlayerService {
               }
               return player;
           }
-        }
-
-        /*public Player updatePlayer (Player players) {
-        playerList.stream().filter(e -> e.getid() == players.getid()).forEach(e->{
-            e.setName(players.getName());
-            e.setAge((players.getAge()));
-        });*/
-
-/* public Player updatePlayer (int id, Player players) {
-            int index = 0;
-            for(Player p: playerList){
-                if(p.getid()==id){
-                    players.setid(id);
-                    playerList.set(index,players);
-                }
-            }
-            return players;
-        }*/
-/**/
+}
