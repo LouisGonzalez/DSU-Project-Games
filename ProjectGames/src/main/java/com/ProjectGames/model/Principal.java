@@ -2,12 +2,17 @@ package com.ProjectGames.model;
 
 import com.ProjectGames.model.tictactoe.MovementGame;
 import com.ProjectGames.service.TictactoeService;
+import com.ProjectGames.service.HangmanService;
+import org.springframework.stereotype.Service;
+
+import com.ProjectGames.model.hangman.MovementGame;
+import com.ProjectGames.service.HangmanService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
 @Service
-public class Principal implements TictactoeService {
+public class Principal implements TictactoeService, HangmanService {
 
     public static ArrayList<Game> games = new ArrayList<>();
     public static ArrayList<Player> players = new ArrayList<>();

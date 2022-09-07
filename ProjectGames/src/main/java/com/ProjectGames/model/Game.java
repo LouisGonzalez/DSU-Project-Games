@@ -5,6 +5,8 @@ import com.ProjectGames.controller.IPlayerGeneral;
 import com.ProjectGames.controller.ListPlayersController;
 import com.ProjectGames.controller.tictactoe.ITTTPlayer;
 import com.ProjectGames.model.tictactoe.Board;
+import com.ProjectGames.controller.hangman.IHMPlayer;
+import com.ProjectGames.model.hangman.Board;
 
 import java.util.ArrayList;
 
@@ -12,7 +14,7 @@ public abstract class Game {
 
 
     private boolean finished;
-    private int guessingAttemps;
+    private int guessingAttempts;
     private int countMoves;
     public ArrayList<Player> players;
     private ArrayList<Integer> idPlayers;
@@ -25,7 +27,7 @@ public abstract class Game {
     public Game(ArrayList<Integer> idPlayers, TypeGame typeGame){
         this.listProviders = new ListPlayersController();
         this.finished = false;
-        this.guessingAttemps = 0;
+        this.guessingAttempts = 0;
         this.countMoves = 0;
         this.idPlayers = idPlayers;
         this.typeGame = typeGame;
@@ -43,12 +45,12 @@ public abstract class Game {
         return this.finished;
     }
 
-    public void setGuessingAttemps(int guessingAttemps){
-        this.guessingAttemps = guessingAttemps;
+    public void setGuessingAttempts(int guessingAttempts){
+        this.guessingAttempts = guessingAttempts;
     }
 
-    public int getGuessingAttemps(){
-        return this.guessingAttemps;
+    public int getGuessingAttempts(){
+        return this.guessingAttempts;
     }
 
     public int getCountMoves() {
