@@ -17,49 +17,46 @@ public class Tictactoe extends Game {
     private Player playerO;
 
 
-    public Tictactoe(ArrayList<Integer> idPlayers, int idGame, TypeGame typeGame){
+    public Tictactoe(ArrayList<Integer> idPlayers, int idGame, TypeGame typeGame) {
         super(idPlayers, typeGame);
         this.myBoard = new Board();
         this.idGame = idGame;
-        this.initPlayers();
     }
+        public void initPlayers () {
+            this.selectPlayers(this.listProviders);
+            playerX = this.players.get(0);
+            playerO = this.players.get(1);
+        }
 
-    public void initPlayers(){
-        this.selectPlayers(this.listProviders);
-        playerX = this.players.get(0);
-        playerO = this.players.get(1);
+        public void setMyBoard (Board myBoard){
+            this.myBoard = myBoard;
+        }
+
+        public Board getMyBoard () {
+            return this.myBoard;
+        }
+
+        public Player getPlayerX () {
+            return playerX;
+        }
+
+        public void setPlayerX (Player playerX){
+            this.playerX = playerX;
+        }
+
+        public Player getPlayerO () {
+            return playerO;
+        }
+
+        public void setPlayerO (Player playerO){
+            this.playerO = playerO;
+        }
+
+        public int getIdGame () {
+            return idGame;
+        }
+
+        public void setIdGame ( int idGame){
+            this.idGame = idGame;
+        }
     }
-
-
-    public void setMyBoard(Board myBoard){
-        this.myBoard = myBoard;
-    }
-
-    public Board getMyBoard(){
-        return this.myBoard;
-    }
-
-    public Player getPlayerX() {
-        return playerX;
-    }
-
-    public void setPlayerX(Player playerX) {
-        this.playerX = playerX;
-    }
-
-    public Player getPlayerO() {
-        return playerO;
-    }
-
-    public void setPlayerO(Player playerO) {
-        this.playerO = playerO;
-    }
-
-    public int getIdGame() {
-        return idGame;
-    }
-
-    public void setIdGame(int idGame) {
-        this.idGame = idGame;
-    }
-}

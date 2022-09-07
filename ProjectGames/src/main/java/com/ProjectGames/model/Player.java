@@ -1,5 +1,6 @@
 package com.ProjectGames.model;
 
+
 public class Player {
 
     private String name;
@@ -26,8 +27,24 @@ public class Player {
         return name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public TypePlayer getTypePlayer() {
+        return typePlayer;
+    }
+
+    public void setTypePlayer(TypePlayer typePlayer) {
+        this.typePlayer = typePlayer;
     }
 
     public StatisticsPlayer getMyStatistics() {
@@ -38,19 +55,5 @@ public class Player {
         this.myStatistics = myStatistics;
     }
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public TypePlayer getTypePlayer() {
-        return typePlayer;
-    }
-
-    public void setTypePlayer(TypePlayer typePlayer) {
-        this.typePlayer = typePlayer;
-    }
 }

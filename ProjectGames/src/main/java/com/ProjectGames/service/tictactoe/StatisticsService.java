@@ -4,6 +4,8 @@ import com.ProjectGames.model.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class StatisticsService {
 
@@ -24,6 +26,26 @@ public class StatisticsService {
 
     public Player findPlayer(int idPlayer){
         return Principal.players.get(idPlayer);
+    }
+
+    public static ArrayList<Statistic> statistics = new ArrayList<>();
+
+    public ArrayList<Statistic> showStatistics(){
+        ArrayList<Statistic> stats = new ArrayList<>();
+        for (int i = 0; i<statistics.size(); i++){
+            stats.add(statistics.get(i)) ;
+        }
+        return stats;
+    }
+
+    public ArrayList<Statistic> StatisticsByGame(TypeGame type){
+        ArrayList<Statistic> stats = new ArrayList<>();
+        for (Statistic statistic : statistics) {
+            if (statistic.getTypeGame() == type) {
+                stats.add(statistic);
+            }
+        }
+        return stats;
     }
 
 }

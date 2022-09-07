@@ -9,3 +9,4 @@ public interface GamePlayersProvider {
     public ArrayList<Player> getPlayersGeneralList(ArrayList<Integer> idPlayers);
 
 }
+

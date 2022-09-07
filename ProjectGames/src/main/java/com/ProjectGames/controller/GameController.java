@@ -8,11 +8,11 @@ public abstract class GameController {
 
     private ArrayList<IPlayerGeneral> generalList;
 
-    public GameController(ArrayList<IPlayerGeneral> generalList){
+    public GameController(ArrayList<IPlayerGeneral> generalList) {
         this.generalList = generalList;
     }
 
-    public ArrayList<Player> selectPlayer(GamePlayersProvider listProviders, ArrayList<Integer> idPlayers){
+    public ArrayList<Player> selectPlayer(GamePlayersProvider listProviders, ArrayList<Integer> idPlayers) {
         return listProviders.getPlayersGeneralList(idPlayers);
     }
 

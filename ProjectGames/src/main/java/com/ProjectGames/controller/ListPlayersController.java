@@ -15,6 +15,5 @@ public class ListPlayersController implements GamePlayersProvider {
         return listPlayers;
     }
 
-
-
 }
+
