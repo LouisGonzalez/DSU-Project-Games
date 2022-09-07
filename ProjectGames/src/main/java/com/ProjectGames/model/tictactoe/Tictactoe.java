@@ -21,6 +21,7 @@ public class Tictactoe extends Game {
         super(idPlayers, typeGame);
         this.myBoard = new Board();
         this.idGame = idGame;
+        this.initPlayers();
     }
         public void initPlayers () {
             this.selectPlayers(this.listProviders);

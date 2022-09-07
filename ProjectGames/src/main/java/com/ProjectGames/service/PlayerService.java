@@ -50,17 +50,23 @@ public class PlayerService {
         return null;
     }
 
-    /*public void updatePlayer(Player players) {
-        playerList.stream().filter(e -> e.getid() == players.getid()).forEach(e -> {
+    public void updatePlayer(PlayerDTO player) {
+        /*playerList.stream().filter(e -> e.getid() == players.getid()).forEach(e -> {
             e.setName(players.getName());
             e.setAge(players.getAge());
-        });
-    }*/
+        });*/
+        for (int i = 0; i < Principal.players.size(); i++) {
+            if(i == player.getId()){
+                Principal.players.get(i).setName(player.getUserName());
+                Principal.players.get(i).setAge(player.getAge());
+            }
+        }
+    }
 
 
             public Player removePlayer (int id){
                 Player player = getOne(id);
-                playerList.remove(player);
+                Principal.players.remove(player);
                 return player;
             }
 

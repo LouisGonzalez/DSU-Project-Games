@@ -69,18 +69,18 @@ public class PlayerController {
 
     }
 
-    @GetMapping("/getPlayerById/{id}")
+        @GetMapping("/getPlayerById/{id}")
     public ResponseEntity<Player> getOne(@PathVariable int id){
         Player player = playerService.getOne(id);
         return new ResponseEntity<>(player, HttpStatus.OK);
     }
 
 
-    /*@PutMapping("/updatePlayer")
-    public ResponseEntity<Player> updatePlayer(@RequestBody Player p){
+    @PutMapping("/updatePlayer")
+    public ResponseEntity<PlayerDTO> updatePlayer(@RequestBody PlayerDTO p){
         playerService.updatePlayer(p);
         return new ResponseEntity<>(p, HttpStatus.OK);
-    }*/
+    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Player> removePlayer(@PathVariable int id){

@@ -30,12 +30,12 @@ public class StatisticsService {
 
     public static ArrayList<Statistic> statistics = new ArrayList<>();
 
-    public ArrayList<Statistic> showStatistics(){
-        ArrayList<Statistic> stats = new ArrayList<>();
+    public ArrayList<Player> showStatistics(){
+        /*ArrayList<Statistic> stats = new ArrayList<>();
         for (int i = 0; i<statistics.size(); i++){
             stats.add(statistics.get(i)) ;
-        }
-        return stats;
+        }*/
+        return Principal.players;
     }
 
     public ArrayList<Statistic> StatisticsByGame(TypeGame type){

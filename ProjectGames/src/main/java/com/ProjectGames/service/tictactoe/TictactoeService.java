@@ -19,6 +19,8 @@ public class TictactoeService {
         for (int i = 0; i < Principal.games.size(); i++) {
             if(Principal.games.get(i).getTypeGame() == TypeGame.TICTACTOE) {
                 Tictactoe game = (Tictactoe) Principal.games.get(i);
+                System.out.println(game.getPlayerX()+ "soy el player x");
+                System.out.println(game.getPlayerO()+ "  sit ek player 0");
                 Player playerX = game.getPlayerX();
                 Player playerO = game.getPlayerO();
                 PlayerDTO playerXsend = new PlayerDTO(game.getIdPlayers().get(0), playerX.getName(), playerX.getTypePlayer(), playerX.getAge());

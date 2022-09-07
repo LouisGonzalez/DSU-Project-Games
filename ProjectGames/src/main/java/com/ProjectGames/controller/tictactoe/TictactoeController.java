@@ -86,7 +86,7 @@ public class TictactoeController {
         return ResponseEntity.ok(gameInfo);
     }
 
-    @GetMapping(value="/all")
+    @GetMapping(value="/games-tictactoe")
     public ResponseEntity<List<GameDataDTO>> getAllGames(){
         return ResponseEntity.ok(tttService.findAllGames());
     }
